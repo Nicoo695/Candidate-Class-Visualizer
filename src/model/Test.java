@@ -1,6 +1,6 @@
 package model;
 
-//import model.javacandidatestruct.CandidateClass;
+import model.javacandidatestruct.CandidateClass;
 
 import java.io.*;
 
@@ -23,8 +23,7 @@ public class Test {
 			e.printStackTrace();
 		}
 		try {
-			//CandidateClass ccd = (CandidateClass) os.readObject();
-			Object ccd = os.readObject();
+			CandidateClass ccd = (CandidateClass) os.readObject();
 			System.out.println(ccd);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
