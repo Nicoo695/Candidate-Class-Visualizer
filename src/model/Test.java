@@ -1,8 +1,12 @@
 package model;
 
+import model.compiler.cstruct.Attribute;
 import model.javacandidatestruct.CandidateClass;
+import model.javacandidatestruct.JavaAttribute;
+import model.javacandidatestruct.JavaMethod;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * @author Nicolas Burroni
@@ -10,9 +14,25 @@ import java.io.*;
  */
 public class Test {
 	public static void main(String[] args) {
+
+		CandidateClass ccd = new CandidateClass("TestClass");
+		ccd.addAttribute(new JavaAttribute("int", "testInteger", false, 0));
+		ccd.addMethod(new JavaMethod("int", "getTestInteger", new ArrayList<Attribute>(), "return testInteger;"));
+
+		//Save file
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream("ccd2");
+			ObjectOutputStream ou = new ObjectOutputStream(fileOutputStream);
+			ou.writeObject(ccd);
+			ou.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		//Load file
 		FileInputStream fileInputStream = null;
 		try {
-			fileInputStream = new FileInputStream("ccd");
+			fileInputStream = new FileInputStream("ccd2");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -23,8 +43,8 @@ public class Test {
 			e.printStackTrace();
 		}
 		try {
-			CandidateClass ccd = (CandidateClass) os.readObject();
-			System.out.println(ccd);
+			CandidateClass ccd2 = (CandidateClass) os.readObject();
+			System.out.println(ccd2);
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
