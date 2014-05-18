@@ -1,4 +1,4 @@
-package model.compiler;
+package models.compiler;
 
 /**
  * User: Javier Isoldi

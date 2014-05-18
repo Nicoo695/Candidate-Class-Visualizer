@@ -1,6 +1,6 @@
-package model.compiler.cstruct;
+package models.compiler.cstruct;
 
-import model.compiler.fileanalyzer.Token;
+import models.compiler.fileanalyzer.Token;
 
 import java.util.List;
 

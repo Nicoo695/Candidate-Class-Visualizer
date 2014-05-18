@@ -1,4 +1,4 @@
-package model.compiler.fileanalyzer;
+package models.compiler.fileanalyzer;
 
 /**
  * User: Javier Isoldi

@@ -1,4 +1,4 @@
-package model.compiler.cstruct;
+package models.compiler.cstruct;
 
 /**
  * Created by IntelliJ IDEA.

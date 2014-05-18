@@ -1,9 +1,9 @@
-package model;
+package models;
 
-import model.compiler.cstruct.Attribute;
-import model.javacandidatestruct.CandidateClass;
-import model.javacandidatestruct.JavaAttribute;
-import model.javacandidatestruct.JavaMethod;
+import models.compiler.cstruct.Attribute;
+import models.javacandidatestruct.CandidateClass;
+import models.javacandidatestruct.JavaAttribute;
+import models.javacandidatestruct.JavaMethod;
 
 import java.io.*;
 import java.util.ArrayList;

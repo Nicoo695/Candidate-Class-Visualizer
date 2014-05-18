@@ -1,4 +1,4 @@
-package model.datastruct;
+package models.datastruct;
 
 import java.io.File;
 import java.io.IOException;

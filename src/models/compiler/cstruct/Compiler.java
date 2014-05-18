@@ -1,13 +1,13 @@
-package model.compiler.cstruct;
+package models.compiler.cstruct;
 
-import model.compiler.InvalidExpressionException;
-import model.compiler.NoSupportedInstructionException;
-import model.compiler.fileanalyzer.Token;
-import model.compiler.fileanalyzer.TokenListFactory;
-import model.compiler.fileanalyzer.TokenType;
-import model.javacandidatestruct.CandidateClass;
-import model.javacandidatestruct.JavaAttribute;
-import model.javacandidatestruct.JavaMethod;
+import models.compiler.InvalidExpressionException;
+import models.compiler.NoSupportedInstructionException;
+import models.compiler.fileanalyzer.Token;
+import models.compiler.fileanalyzer.TokenListFactory;
+import models.compiler.fileanalyzer.TokenType;
+import models.javacandidatestruct.CandidateClass;
+import models.javacandidatestruct.JavaAttribute;
+import models.javacandidatestruct.JavaMethod;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

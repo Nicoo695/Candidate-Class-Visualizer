@@ -1,9 +1,9 @@
-package model.compiler.cstruct;
+package models.compiler.cstruct;
 
-import model.compiler.InvalidExpressionException;
-import model.compiler.fileanalyzer.Token;
-import model.compiler.fileanalyzer.TokenListFactory;
-import model.compiler.fileanalyzer.TokenType;
+import models.compiler.InvalidExpressionException;
+import models.compiler.fileanalyzer.Token;
+import models.compiler.fileanalyzer.TokenListFactory;
+import models.compiler.fileanalyzer.TokenType;
 
 import java.io.IOException;
 import java.io.StringReader;

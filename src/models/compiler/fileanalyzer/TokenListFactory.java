@@ -1,6 +1,6 @@
-package model.compiler.fileanalyzer;
+package models.compiler.fileanalyzer;
 
-import model.compiler.InvalidExpressionException;
+import models.compiler.InvalidExpressionException;
 
 import java.io.IOException;
 import java.io.Reader;

@@ -1,11 +1,11 @@
-package model.compiler.cstruct;
+package models.compiler.cstruct;
 
-import model.compiler.InvalidExpressionException;
-import model.compiler.NoSupportedInstructionException;
-import model.compiler.fileanalyzer.Token;
-import model.compiler.fileanalyzer.TokenType;
-import model.javacandidatestruct.CandidateClass;
-import model.javacandidatestruct.JavaAttribute;
+import models.compiler.InvalidExpressionException;
+import models.compiler.NoSupportedInstructionException;
+import models.compiler.fileanalyzer.Token;
+import models.compiler.fileanalyzer.TokenType;
+import models.javacandidatestruct.CandidateClass;
+import models.javacandidatestruct.JavaAttribute;
 
 import java.io.IOException;
 import java.util.*;

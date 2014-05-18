@@ -1,4 +1,4 @@
-package model.datastruct;
+package models.datastruct;
 
 public class ListD {
     private int length;

@@ -1,8 +1,8 @@
-package model;
+package models;
 
-import model.compiler.InvalidExpressionException;
-import model.compiler.NoSupportedInstructionException;
-import model.compiler.cstruct.Compiler;
+import models.compiler.InvalidExpressionException;
+import models.compiler.NoSupportedInstructionException;
+import models.compiler.cstruct.Compiler;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
-package model.javacandidatestruct;
+package models.javacandidatestruct;
 
 
-import model.compiler.cstruct.Attribute;
+import models.compiler.cstruct.Attribute;
 
 import java.io.Serializable;
 
