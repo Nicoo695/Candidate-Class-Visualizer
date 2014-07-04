@@ -84,7 +84,11 @@ public class CandidateClass implements Serializable {
         this.attributes = attributes;
     }
 
-    public String generateName(Collection<Attribute> attributes){
+	public List<JavaMethod> getMethods() {
+		return methods;
+	}
+
+	public String generateName(Collection<Attribute> attributes){
         StringBuilder stringBuilder = new StringBuilder();
         for (Attribute attribute : attributes) {
             stringBuilder.append(attribute.getName()).append(attribute.getName());
