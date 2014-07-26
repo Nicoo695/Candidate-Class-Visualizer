@@ -12,4 +12,10 @@ public class CandidateClassView {
 	private JTabbedPane tabbedPane1;
 	private JTextArea textArea1;
 	private JSlider slider1;
+
+
+
+	public void addCandidateClass(String className, String[] attributes, String[] methods){
+		//TODO
+	}
 }
