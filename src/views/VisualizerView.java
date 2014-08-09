@@ -15,6 +15,9 @@ public class VisualizerView extends JFrame{
 	private JDesktopPane classesPane;
 	private JPanel rightPanel;
 	private JPanel leftPanel;
+	private JPanel tabsPanel;
+	private JPanel leftSouthPanel;
+	private JButton addCodeButton;
 	private int horizontalFrameCount, ccdFrameOffsetX, ccdFrameOffsetY;
 	private final static int DEFAULT_OFFSET = 35;
 
@@ -58,6 +61,6 @@ public class VisualizerView extends JFrame{
 	private void createUIComponents() {
 		classesPane = new JDesktopPane();
 		legacyCodePane = new JTabbedPane(SwingConstants.TOP);
-
+		tabsPanel = new JPanel();
 	}
 }

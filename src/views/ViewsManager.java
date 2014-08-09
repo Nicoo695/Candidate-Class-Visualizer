@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * @author Nicolas Burroni
@@ -38,5 +39,13 @@ public class ViewsManager {
 		} else if (result.equals("")){
 			return null;
 		} else return result;
+	}
+
+	public void addLegacyCode(String fileName, String code){
+		visualizerView.addLegacyCode(fileName, code);
+	}
+
+	public void addCandidateClass(String className, List<String> attributes, List<String> methods){
+		visualizerView.addCandidateClass(className, attributes, methods);
 	}
 }
