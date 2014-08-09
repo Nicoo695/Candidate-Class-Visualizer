@@ -1,6 +1,6 @@
 package tests;
 
-import views.LegacyChooserView;
+import views.LegacyFileChooserView;
 
 /**
  * @author Nicolas Burroni
@@ -8,7 +8,7 @@ import views.LegacyChooserView;
  */
 public class ChooserTest {
 	public static void main(String[] args) {
-		LegacyChooserView chooser = new LegacyChooserView();
+		LegacyFileChooserView chooser = new LegacyFileChooserView();
 		chooser.setVisible(true);
 		chooser.addBrowseButtonListener(e -> chooser.browseLegacyFile());
 	}

@@ -8,14 +8,14 @@ import java.awt.event.ActionListener;
  * @author Nicolas Burroni
  * @since 7/26/2014
  */
-public class LegacyChooserView extends JFrame{
+public class LegacyFileChooserView extends JFrame{
 
 
 	private JPanel root;
 	private JButton browseButton;
 	private JLabel welcomeLabel;
 
-	public LegacyChooserView(){
+	public LegacyFileChooserView(){
 		super(LanguageManager.getString("programName"));
 		setContentPane(root);
 		try {
@@ -30,7 +30,7 @@ public class LegacyChooserView extends JFrame{
 		browseButton.addActionListener(browseButtonListener);
 	}
 
-	public String browseLegacyFile(){ //TODO must setVisible false
+	public String browseLegacyFile(){ // must setVisible false
 		JFileChooser chooser = new JFileChooser();
 		JFrame chooserFrame = new JFrame();
 		chooserFrame.setSize(300, 300);
@@ -39,7 +39,7 @@ public class LegacyChooserView extends JFrame{
 		String returnVal;
 		if(choice == JFileChooser.ERROR_OPTION){
 			returnVal = null;
-		} else if (choice == JFileChooser.CANCEL_OPTION){  //TODO must setVisible true
+		} else if (choice == JFileChooser.CANCEL_OPTION){  // must setVisible true
 			returnVal = "";
 		} else {
 			returnVal = chooser.getSelectedFile().getAbsolutePath();

@@ -9,11 +9,11 @@ import java.awt.event.ActionListener;
  */
 public class ViewsManager {
 
-	private LegacyChooserView chooserView;
+	private LegacyFileChooserView chooserView;
 	private VisualizerView visualizerView;
 
 	public ViewsManager(){
-		chooserView = new LegacyChooserView();
+		chooserView = new LegacyFileChooserView();
 	}
 
 	public void showLegacyFileChooser(ActionListener browseButtonListener){
@@ -23,12 +23,19 @@ public class ViewsManager {
 
 	public String browseLegacyFile(){
 		chooserView.setVisible(false);
+		String result = showFileChooser();
+		if(result == null){
+			chooserView.setVisible(true);
+			return null;
+		} else return result;
+	}
+
+	public String showFileChooser(){
 		String result = chooserView.browseLegacyFile();
 		if(result == null){
 			JOptionPane.showMessageDialog(new JFrame(), LanguageManager.getString("browseError"), "Error", JOptionPane.ERROR_MESSAGE);
-			return browseLegacyFile();
+			return showFileChooser();
 		} else if (result.equals("")){
-			chooserView.setVisible(true);
 			return null;
 		} else return result;
 	}

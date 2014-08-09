@@ -12,7 +12,6 @@ public class VisualizerView extends JFrame{
 
 	private JPanel root;
 	private JTabbedPane legacyCodePane;
-	private JTextArea textArea1;
 	private JDesktopPane classesPane;
 	private JPanel rightPanel;
 	private JPanel leftPanel;
@@ -49,7 +48,16 @@ public class VisualizerView extends JFrame{
 		} catch (java.beans.PropertyVetoException e) {}
 	}
 
+	public void addLegacyCode(String fileName, String code){
+		JTextArea legacyCodeArea = new JTextArea(code);
+		legacyCodeArea.setMargin(new Insets(5, 5, 5, 5));
+		legacyCodeArea.setEditable(false);
+		legacyCodePane.addTab(fileName, new JScrollPane(legacyCodeArea));
+	}
+
 	private void createUIComponents() {
 		classesPane = new JDesktopPane();
+		legacyCodePane = new JTabbedPane(SwingConstants.TOP);
+
 	}
 }

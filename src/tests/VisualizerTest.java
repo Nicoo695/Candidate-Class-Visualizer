@@ -1,10 +1,6 @@
 package tests;
 
-import views.CandidateClassFrame;
 import views.VisualizerView;
-
-import javax.swing.*;
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 
 /**
@@ -33,5 +29,6 @@ public class VisualizerTest {
 		c.addCandidateClass("Test", a, b);
 		c.addCandidateClass("Test", a, b);
 		c.addCandidateClass("Test", a, b);
+
 	}
 }
