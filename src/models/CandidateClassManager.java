@@ -1,11 +1,16 @@
 package models;
 
+import models.compiler.InvalidExpressionException;
+import models.compiler.NoSupportedInstructionException;
+import models.datastruct.ListD;
 import models.javacandidatestruct.CandidateClass;
 
-import java.io.*;
-import java.util.LinkedHashSet;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+import models.compiler.cstruct.Compiler;
 
 /**
  * @author Nicolas Burroni
@@ -13,60 +18,48 @@ import java.util.Set;
  */
 public class CandidateClassManager {
 
-	private Set<CandidateClass> candidateClassSet;
 	private List<CandidateClass> candidateClassList;
 	private Compiler myCompiler;
+	private int lastKnownPosition;
 
 	//Debugging constructor
 	public CandidateClassManager(List<CandidateClass> ccds){
 		this.candidateClassList = ccds;
+		myCompiler = new Compiler();
+		lastKnownPosition = 0;
 	}
 
 	public CandidateClassManager(){
-		this.candidateClassSet = new LinkedHashSet<>();
+		this.candidateClassList = new ArrayList<>();
+		myCompiler = new Compiler();
+		lastKnownPosition = 0;
 	}
 
-	public CandidateClassManager(File legacyCodeFile){
-		//this.candidateClassList = TODO call method to parse legacy code and generate the CandidateClasses
-
-	}
-
-	public boolean generateClasses(File legacyCodeFile){
-		//this.candidateClassList = TODO call method to parse legacy code and generate the CandidateClasses
-		//TODO es mejor devolver boolean o tirar excepcion?
+	public boolean generateClasses(String legacyCodeFilePath) {
+		try {
+			myCompiler.run(new File(legacyCodeFilePath));
+		} catch (IOException | InvalidExpressionException | NoSupportedInstructionException e) {
+			return false;
+		}
+		candidateClassList.addAll(myCompiler.getCandidateClasses());
 		return true;
 	}
 
-	/**
-	 * Imports a CandidateClass to the database.
-	 * @param ccdFile File to read.
-	 * @return true if it was imported correctly, false if the CandidateClass already exists in the database.
-	 * @throws IOException if there was an error while trying to read the file.
-	 * @throws ClassNotFoundException if the file was not a CandidateClass.
-	 */
-	public boolean importCandidateClass(File ccdFile) throws IOException, ClassNotFoundException {
-		return candidateClassSet.add(readCandidateClass(ccdFile));
-	}
-
-	/**
-	 * Reads a file and returns the CandidateClass object serialized.
-	 * @param ccdFile File to read.
-	 * @return the read CandidateClass.
-	 * @throws IOException if there was an error while trying to read the file.
-	 * @throws ClassNotFoundException if the file was not a CandidateClass.
-	 */
-	public CandidateClass readCandidateClass(File ccdFile) throws IOException, ClassNotFoundException {
-		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(ccdFile));
-		return (CandidateClass) objectInputStream.readObject();
+	public List<CandidateClass> getNewCandidateClasses(){
+		List<CandidateClass> ccds = new ArrayList<>();
+		for(; lastKnownPosition < candidateClassList.size(); lastKnownPosition++){
+			ccds.add(candidateClassList.get(lastKnownPosition));
+		}
+		return ccds;
 	}
 
 	public String[][] getCandidateClassesToString(){
 		String[][] ccds = new String[candidateClassList.size()][3];
-		for (int i = 0; i < ccds.length; i++) {
-			CandidateClass ccd = candidateClassList.get(i);
-			ccds[i][0] = ccd.getName();
-			concatList(ccds, i, 1, ccd.getAttributes());
-			concatList(ccds, i, 2, ccd.getMethods());
+		for (; lastKnownPosition < ccds.length; lastKnownPosition++) {
+			CandidateClass ccd = candidateClassList.get(lastKnownPosition);
+			ccds[lastKnownPosition][0] = ccd.getName();
+			concatList(ccds, lastKnownPosition, 1, ccd.getAttributes());
+			concatList(ccds, lastKnownPosition, 2, ccd.getMethods());
 		}
 
 		return ccds;

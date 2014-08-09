@@ -1,9 +1,6 @@
 package tests;
 
-import views.LanguageManager;
 import views.ViewsManager;
-
-import javax.swing.*;
 
 /**
  * @author Nicolas Burroni
@@ -12,6 +9,6 @@ import javax.swing.*;
 public class ViewManagerTest {
 	public static void main(String[] args) {
 		ViewsManager m = new ViewsManager();
-		m.showLegacyFileChooser(e -> System.out.println(m.browseLegacyFile()));
+		m.showStartupDialog(e -> System.out.println(m.browseLegacyFile()));
 	}
 }

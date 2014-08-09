@@ -65,6 +65,10 @@ public class Compiler {
 
     }
 
+	public Collection<CandidateClass> getCandidateClasses(){
+		return candidates.values();
+	}
+
     private void createCandidatesFromModules() {
         for (Module module : modules) {
             if (!module.isBasicModule()) {

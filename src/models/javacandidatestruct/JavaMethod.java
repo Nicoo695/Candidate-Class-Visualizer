@@ -42,5 +42,16 @@ public class JavaMethod implements Serializable {
         return result;
     }
 
+	public String getUMLString(){
+		String result = returnType + " " + name + "(";
+		if (arguments != null) {
+			for (Attribute argument : arguments) {
+				result += " " + argument;
+			}
+		}
+		result += ")";
+		return result;
+	}
+
 }
 

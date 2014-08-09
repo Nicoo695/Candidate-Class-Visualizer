@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -62,5 +63,9 @@ public class VisualizerView extends JFrame{
 		classesPane = new JDesktopPane();
 		legacyCodePane = new JTabbedPane(SwingConstants.TOP);
 		tabsPanel = new JPanel();
+	}
+
+	public void addCodeButtonListener(ActionListener codeButtonListener){
+		addCodeButton.addActionListener(codeButtonListener);
 	}
 }
