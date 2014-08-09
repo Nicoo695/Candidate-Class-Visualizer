@@ -1,6 +1,8 @@
 package views;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * @author Nicolas Burroni
@@ -10,17 +12,26 @@ public class LegacyChooserView extends JFrame{
 
 
 	private JPanel root;
+	private JButton browseButton;
+	private JLabel welcomeLabel;
 
 	public LegacyChooserView(){
+		super(LanguageManager.getString("programName"));
 		setContentPane(root);
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception ignored) {}
+		setSize(500, 150);
+		setResizable(false);
+		setLocationRelativeTo(null);
 	}
 
-	public String chooseLegacyFile(){
+	public void addBrowseButtonListener(ActionListener browseButtonListener){
+		browseButton.addActionListener(browseButtonListener);
+	}
+
+	public String browseLegacyFile(){ //TODO must setVisible false
 		JFileChooser chooser = new JFileChooser();
-		setVisible(false);
 		JFrame chooserFrame = new JFrame();
 		chooserFrame.setSize(300, 300);
 		chooserFrame.setLocationRelativeTo(null);
@@ -28,13 +39,11 @@ public class LegacyChooserView extends JFrame{
 		String returnVal;
 		if(choice == JFileChooser.ERROR_OPTION){
 			returnVal = null;
-		} else if (choice == JFileChooser.CANCEL_OPTION){
-			setVisible(true);
+		} else if (choice == JFileChooser.CANCEL_OPTION){  //TODO must setVisible true
 			returnVal = "";
 		} else {
 			returnVal = chooser.getSelectedFile().getAbsolutePath();
 		}
-
 		return returnVal;
 	}
 

@@ -22,15 +22,16 @@ public class VisualizerTest {
 		b.add("void main");
 		b.add("void main");
 		c.addCandidateClass("Test", a, b);
-		CandidateClassFrame f = new CandidateClassFrame("test", a, b);
-		JDesktopPane d = new JDesktopPane();
-		f.setVisible(true);
-		f.setLocation(0, 0);
-		d.add(f);
-		try {
-			f.setSelected(true);
-		} catch (PropertyVetoException e) {
-			e.printStackTrace();
-		}
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
+		c.addCandidateClass("Test", a, b);
 	}
 }

@@ -11,10 +11,13 @@ import java.util.List;
 public class VisualizerView extends JFrame{
 
 	private JPanel root;
-	private JTabbedPane tabbedPane1;
+	private JTabbedPane legacyCodePane;
 	private JTextArea textArea1;
 	private JDesktopPane classesPane;
-	private JPanel classesPanel;
+	private JPanel rightPanel;
+	private JPanel leftPanel;
+	private int horizontalFrameCount, ccdFrameOffsetX, ccdFrameOffsetY;
+	private final static int DEFAULT_OFFSET = 35;
 
 	public VisualizerView() {
 		super();
@@ -24,13 +27,22 @@ public class VisualizerView extends JFrame{
 		setBounds(inset, inset,
 				screenSize.width  - inset*2,
 				screenSize.height - inset*2);
-		//setMinimumSize(new Dimension(500, 500));
+		setMinimumSize(new Dimension(350, 300));
 		setLocationRelativeTo(null);
+		ccdFrameOffsetX = DEFAULT_OFFSET;
+		ccdFrameOffsetY = 0;
+		horizontalFrameCount = 0;
 	}
 
 	public void addCandidateClass(String className, List<String> attributes, List<String> methods){
 		CandidateClassFrame ccdFrame = new CandidateClassFrame(className, attributes, methods);
-		ccdFrame.setVisible(true); //necessary as of 1.3
+		ccdFrame.setLocation(ccdFrameOffsetX*horizontalFrameCount, ccdFrameOffsetY);
+		horizontalFrameCount++;
+		if(horizontalFrameCount == 5) {
+			horizontalFrameCount = 0;
+			ccdFrameOffsetY += DEFAULT_OFFSET;
+		}
+		ccdFrame.setVisible(true);
 		classesPane.add(ccdFrame);
 		try {
 			ccdFrame.setSelected(true);

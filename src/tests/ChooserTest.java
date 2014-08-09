@@ -8,6 +8,8 @@ import views.LegacyChooserView;
  */
 public class ChooserTest {
 	public static void main(String[] args) {
-		System.out.println(new LegacyChooserView().chooseLegacyFile());
+		LegacyChooserView chooser = new LegacyChooserView();
+		chooser.setVisible(true);
+		chooser.addBrowseButtonListener(e -> chooser.browseLegacyFile());
 	}
 }
