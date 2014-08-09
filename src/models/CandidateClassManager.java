@@ -1,7 +1,6 @@
 package models;
 
 import models.javacandidatestruct.CandidateClass;
-import models.javacandidatestruct.JavaAttribute;
 
 import java.io.*;
 import java.util.LinkedHashSet;
@@ -16,6 +15,7 @@ public class CandidateClassManager {
 
 	private Set<CandidateClass> candidateClassSet;
 	private List<CandidateClass> candidateClassList;
+	private Compiler myCompiler;
 
 	//Debugging constructor
 	public CandidateClassManager(List<CandidateClass> ccds){
@@ -29,6 +29,12 @@ public class CandidateClassManager {
 	public CandidateClassManager(File legacyCodeFile){
 		//this.candidateClassList = TODO call method to parse legacy code and generate the CandidateClasses
 
+	}
+
+	public boolean generateClasses(File legacyCodeFile){
+		//this.candidateClassList = TODO call method to parse legacy code and generate the CandidateClasses
+		//TODO es mejor devolver boolean o tirar excepcion?
+		return true;
 	}
 
 	/**
