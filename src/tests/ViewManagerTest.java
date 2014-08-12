@@ -9,7 +9,7 @@ import views.ViewsManager;
  */
 public class ViewManagerTest {
 	public static void main(String[] args) {
-		ViewsManager m = new ViewsManager(event -> ((CandidateClassFrame.MethodButton) event.getSource()).showMethodBodyFrame());
-		m.showStartupDialog(e -> System.out.println(m.browseLegacyFile()));
+//		ViewsManager m = new ViewsManager(event -> ((CandidateClassFrame.MethodButton) event.getSource()).showMethodBodyFrame());
+//		m.showStartupDialog(e -> System.out.println(m.browseLegacyFile()));
 	}
 }

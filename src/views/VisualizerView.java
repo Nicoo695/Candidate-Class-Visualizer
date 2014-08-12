@@ -20,13 +20,18 @@ public class VisualizerView extends JFrame{
 	private JSplitPane splitPane;
 	private JButton addCodeButton;
 	private int horizontalFrameCount, ccdFrameOffsetX, ccdFrameOffsetY;
-	private ActionListener methodButtonListener;
+	private ActionListener methodButtonListener, renameListener, deleteListener, commentListener, rankingListener;
 	private final static int DEFAULT_OFFSET = 65;
 
-	public VisualizerView(ActionListener methodButtonListener) {
+	public VisualizerView(ActionListener methodButtonListener,
+	                           /*ActionListener renameListener, ActionListener deleteListener, ActionListener commentListener,*/ ActionListener rankingListener) {
 		super();
 		setContentPane(root);
 		this.methodButtonListener = methodButtonListener;
+		/*this.renameListener = renameListener;
+		this.deleteListener = deleteListener;
+		this.commentListener = commentListener;*/
+		this.rankingListener = rankingListener;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int inset = 60;
 		setBounds(inset, inset,
@@ -41,7 +46,7 @@ public class VisualizerView extends JFrame{
 	}
 
 	public void addCandidateClass(String className, List<String> attributes, List<String> methods, List<String> methodBodies){
-		CandidateClassFrame ccdFrame = new CandidateClassFrame(className, attributes, methods, methodBodies, methodButtonListener);
+		CandidateClassFrame ccdFrame = new CandidateClassFrame(className, attributes, methods, methodBodies, methodButtonListener, rankingListener);
 		ccdFrame.setLocation(ccdFrameOffsetX*horizontalFrameCount, ccdFrameOffsetY);
 		horizontalFrameCount++;
 		if(horizontalFrameCount == 5) {

@@ -7,6 +7,7 @@ import models.javacandidatestruct.JavaMethod;
 import views.CandidateClassFrame;
 import views.ViewsManager;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -27,8 +28,8 @@ public class VisualizerController {
 
 	public VisualizerController(){
 		modelManager = new CandidateClassManager();
-		viewManager = new ViewsManager(this::methodPressed);
-		//TODO que las funciones muestren el body en nueva ventana cuando se las clickea
+		viewManager = new ViewsManager(this::methodPressed, this::rankingChosen);
+		//que las funciones muestren el body en nueva ventana cuando se las clickea
 		//TODO tambien cargar los archivos que linkea el parser
 		//TODO toolbar para mostrar ventana nueva, volver al inicio, etc...
 		//TODO remane, delete, comments, ccd ranking (boton derecho, submenu color ranking y que cambie el color del frame)
@@ -93,5 +94,10 @@ public class VisualizerController {
 
 	public void methodPressed(ActionEvent event){
 		((CandidateClassFrame.MethodButton) event.getSource()).showMethodBodyFrame();
+	}
+
+	public void rankingChosen(ActionEvent event){
+		int rank = Integer.parseInt(((JMenuItem) event.getSource()).getText());
+
 	}
 }

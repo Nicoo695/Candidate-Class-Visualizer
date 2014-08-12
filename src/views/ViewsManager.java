@@ -13,9 +13,10 @@ public class ViewsManager {
 	private LegacyFileChooserView chooserView;
 	private VisualizerView visualizerView;
 
-	public ViewsManager(ActionListener methodButtonListener){
+	public ViewsManager(ActionListener methodButtonListener,
+	                           /*ActionListener renameListener, ActionListener deleteListener, ActionListener commentListener,*/ ActionListener rankingListener){
 		chooserView = new LegacyFileChooserView();
-		visualizerView = new VisualizerView(methodButtonListener);
+		visualizerView = new VisualizerView(methodButtonListener, rankingListener);
 	}
 
 	public void showStartupDialog(ActionListener browseButtonListener){
