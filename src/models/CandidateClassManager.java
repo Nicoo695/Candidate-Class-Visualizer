@@ -2,13 +2,11 @@ package models;
 
 import models.compiler.InvalidExpressionException;
 import models.compiler.NoSupportedInstructionException;
-import models.datastruct.ListD;
 import models.javacandidatestruct.CandidateClass;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import models.compiler.cstruct.Compiler;
 

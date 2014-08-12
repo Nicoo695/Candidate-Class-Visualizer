@@ -4,8 +4,11 @@ import models.CandidateClassManager;
 import models.javacandidatestruct.CandidateClass;
 import models.javacandidatestruct.JavaAttribute;
 import models.javacandidatestruct.JavaMethod;
+import views.CandidateClassFrame;
 import views.ViewsManager;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +27,11 @@ public class VisualizerController {
 
 	public VisualizerController(){
 		modelManager = new CandidateClassManager();
-		viewManager = new ViewsManager();
+		viewManager = new ViewsManager(this::methodPressed);
+		//TODO que las funciones muestren el body en nueva ventana cuando se las clickea
+		//TODO tambien cargar los archivos que linkea el parser
+		//TODO toolbar para mostrar ventana nueva, volver al inicio, etc...
+		//TODO remane, delete, comments, ccd ranking (boton derecho, submenu color ranking y que cambie el color del frame)
 	}
 
 
@@ -39,6 +46,16 @@ public class VisualizerController {
 			showCCDs();
 			showFile(result);
 		}
+		viewManager.showVisualizer(e -> addLegacyFile());
+	}
+
+	public void addLegacyFile(){
+		String result = viewManager.showFileChooser();
+		if(result != null){
+			modelManager.generateClasses(result);
+			showCCDs();
+			showFile(result);
+		}
 	}
 
 	public void showCCDs(){
@@ -48,13 +65,15 @@ public class VisualizerController {
 			List<JavaMethod> ccdMethods = ccd.getMethods();
 			List<String> attributes = new ArrayList<>();
 			List<String> methods = new ArrayList<>();
+			List<String> methodBodies = new ArrayList<>();
 			for (JavaAttribute attribute : ccdAttributes) {
 				attributes.add(attribute.toString());
 			}
 			for (JavaMethod method : ccdMethods) {
 				methods.add(method.getUMLString());
+				methodBodies.add(method.getBody());
 			}
-			viewManager.addCandidateClass(ccd.getName(), attributes, methods);
+			viewManager.addCandidateClass(ccd.getName(), attributes, methods, methodBodies);
 		}
 	}
 
@@ -70,5 +89,9 @@ public class VisualizerController {
 			} while(line != null);
 		} catch (java.io.IOException ignored) {}
 		viewManager.addLegacyCode(toShow.getName(), text);
+	}
+
+	public void methodPressed(ActionEvent event){
+		((CandidateClassFrame.MethodButton) event.getSource()).showMethodBodyFrame();
 	}
 }

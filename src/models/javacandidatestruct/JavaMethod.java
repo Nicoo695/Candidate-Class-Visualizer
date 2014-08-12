@@ -43,7 +43,7 @@ public class JavaMethod implements Serializable {
     }
 
 	public String getUMLString(){
-		String result = returnType + " " + name + "(";
+		String result = returnType + " " + name + " (";
 		if (arguments != null) {
 			for (Attribute argument : arguments) {
 				result += " " + argument;
@@ -53,5 +53,9 @@ public class JavaMethod implements Serializable {
 		return result;
 	}
 
+
+	public String getBody() {
+		return body;
+	}
 }
 

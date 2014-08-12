@@ -17,14 +17,16 @@ public class VisualizerView extends JFrame{
 	private JPanel rightPanel;
 	private JPanel leftPanel;
 	private JPanel tabsPanel;
-	private JPanel leftSouthPanel;
+	private JSplitPane splitPane;
 	private JButton addCodeButton;
 	private int horizontalFrameCount, ccdFrameOffsetX, ccdFrameOffsetY;
-	private final static int DEFAULT_OFFSET = 35;
+	private ActionListener methodButtonListener;
+	private final static int DEFAULT_OFFSET = 65;
 
-	public VisualizerView() {
+	public VisualizerView(ActionListener methodButtonListener) {
 		super();
 		setContentPane(root);
+		this.methodButtonListener = methodButtonListener;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int inset = 60;
 		setBounds(inset, inset,
@@ -35,10 +37,11 @@ public class VisualizerView extends JFrame{
 		ccdFrameOffsetX = DEFAULT_OFFSET;
 		ccdFrameOffsetY = 0;
 		horizontalFrameCount = 0;
+		createMenuBar();
 	}
 
-	public void addCandidateClass(String className, List<String> attributes, List<String> methods){
-		CandidateClassFrame ccdFrame = new CandidateClassFrame(className, attributes, methods);
+	public void addCandidateClass(String className, List<String> attributes, List<String> methods, List<String> methodBodies){
+		CandidateClassFrame ccdFrame = new CandidateClassFrame(className, attributes, methods, methodBodies, methodButtonListener);
 		ccdFrame.setLocation(ccdFrameOffsetX*horizontalFrameCount, ccdFrameOffsetY);
 		horizontalFrameCount++;
 		if(horizontalFrameCount == 5) {
@@ -63,6 +66,15 @@ public class VisualizerView extends JFrame{
 		classesPane = new JDesktopPane();
 		legacyCodePane = new JTabbedPane(SwingConstants.TOP);
 		tabsPanel = new JPanel();
+	}
+
+	private void createMenuBar(){
+		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu(LanguageManager.getString("file"));
+		fileMenu.add(new JMenuItem(LanguageManager.getString("openNew")));
+		menuBar.add(fileMenu);
+		//TODO continue...
+		setJMenuBar(menuBar);
 	}
 
 	public void addCodeButtonListener(ActionListener codeButtonListener){

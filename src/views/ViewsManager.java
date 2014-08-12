@@ -13,8 +13,9 @@ public class ViewsManager {
 	private LegacyFileChooserView chooserView;
 	private VisualizerView visualizerView;
 
-	public ViewsManager(){
+	public ViewsManager(ActionListener methodButtonListener){
 		chooserView = new LegacyFileChooserView();
+		visualizerView = new VisualizerView(methodButtonListener);
 	}
 
 	public void showStartupDialog(ActionListener browseButtonListener){
@@ -54,7 +55,7 @@ public class ViewsManager {
 		visualizerView.addLegacyCode(fileName, code);
 	}
 
-	public void addCandidateClass(String className, List<String> attributes, List<String> methods){
-		visualizerView.addCandidateClass(className, attributes, methods);
+	public void addCandidateClass(String className, List<String> attributes, List<String> methods, List<String> methodBodies){
+		visualizerView.addCandidateClass(className, attributes, methods, methodBodies);
 	}
 }
