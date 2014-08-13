@@ -95,7 +95,7 @@ public class VisualizerController {
 			String line;
 			do {
 				line = reader.readLine();
-				text.concat(line + "\n");
+				text = text.concat(line + "\n");
 			} while(line != null);
 		} catch (java.io.IOException ignored) {}
 		viewManager.addLegacyCode(toShow.getName(), text);
