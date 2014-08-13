@@ -9,10 +9,8 @@ import views.ViewsManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,22 +43,23 @@ public class VisualizerController {
 		if(result != null){
 			modelManager.generateClasses(result);
 			showCCDs();
-			showFile(result);
+//			showFile(result);
+			showFiles();
 		}
-		viewManager.showVisualizer(e -> addLegacyFile());
+		viewManager.showVisualizer();
 	}
 
-	public void addLegacyFile(){
+	/*public void addLegacyFile(){
 		String result = viewManager.showFileChooser();
 		if(result != null){
 			modelManager.generateClasses(result);
 			showCCDs();
 			showFile(result);
 		}
-	}
+	}*/
 
 	public void showCCDs(){
-		List<CandidateClass> ccds = modelManager.getNewCandidateClasses();
+		List<CandidateClass> ccds = modelManager.getCandidateClasses();
 		for (CandidateClass ccd : ccds) {
 			List<JavaAttribute> ccdAttributes = ccd.getAttributes();
 			List<JavaMethod> ccdMethods = ccd.getMethods();
@@ -78,8 +77,18 @@ public class VisualizerController {
 		}
 	}
 
+	public void showFiles(){
+		List<File> files = modelManager.getAssociatedFiles();
+		for (File file : files) {
+			showFile(file);
+		}
+	}
+
 	public void showFile(String path){
-		File toShow = new File(path);
+		showFile(new File(path));
+	}
+
+	public void showFile(File toShow){
 		String text = "";
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(toShow));
@@ -97,7 +106,8 @@ public class VisualizerController {
 	}
 
 	public void rankingChosen(ActionEvent event){
-		int rank = Integer.parseInt(((JMenuItem) event.getSource()).getText());
+		JMenuItem item = (JMenuItem) event.getSource();
+		int rank = Integer.parseInt(item.getText());
 
 	}
 }

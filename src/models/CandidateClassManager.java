@@ -43,12 +43,16 @@ public class CandidateClassManager {
 		return true;
 	}
 
-	public List<CandidateClass> getNewCandidateClasses(){
+	public List<CandidateClass> getCandidateClasses(){
 		List<CandidateClass> ccds = new ArrayList<>();
 		for(; lastKnownPosition < candidateClassList.size(); lastKnownPosition++){
 			ccds.add(candidateClassList.get(lastKnownPosition));
 		}
 		return ccds;
+	}
+
+	public List<File> getAssociatedFiles(){
+		return myCompiler.getAlreadyProcessed();
 	}
 
 	public String[][] getCandidateClassesToString(){

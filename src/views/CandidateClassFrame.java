@@ -54,6 +54,10 @@ public class CandidateClassFrame extends JInternalFrame {
 			rank.addActionListener(this::changeColor);
 			rankingMenu.add(rank);
 		}
+		popup.add(renameItem);
+		popup.add(deleteItem);
+		popup.add(commentItem);
+		popup.add(new JSeparator(SwingConstants.HORIZONTAL));
 		popup.add(rankingMenu);
 		addMouseListener(new PopupListener());
 		//

@@ -18,7 +18,6 @@ public class VisualizerView extends JFrame{
 	private JPanel leftPanel;
 	private JPanel tabsPanel;
 	private JSplitPane splitPane;
-	private JButton addCodeButton;
 	private int horizontalFrameCount, ccdFrameOffsetX, ccdFrameOffsetY;
 	private ActionListener methodButtonListener, renameListener, deleteListener, commentListener, rankingListener;
 	private final static int DEFAULT_OFFSET = 65;
@@ -82,7 +81,4 @@ public class VisualizerView extends JFrame{
 		setJMenuBar(menuBar);
 	}
 
-	public void addCodeButtonListener(ActionListener codeButtonListener){
-		addCodeButton.addActionListener(codeButtonListener);
-	}
 }

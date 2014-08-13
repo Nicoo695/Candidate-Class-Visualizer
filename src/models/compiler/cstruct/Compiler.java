@@ -69,7 +69,11 @@ public class Compiler {
 		return candidates.values();
 	}
 
-    private void createCandidatesFromModules() {
+	public List<File> getAlreadyProcessed() {
+		return alreadyProcessed;
+	}
+
+	private void createCandidatesFromModules() {
         for (Module module : modules) {
             if (!module.isBasicModule()) {
                 candidates.put(module.getFile().getName(), new CandidateClass(module));

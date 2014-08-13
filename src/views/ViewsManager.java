@@ -24,8 +24,7 @@ public class ViewsManager {
 		chooserView.addBrowseButtonListener(browseButtonListener);
 	}
 
-	public void showVisualizer(ActionListener codeButtonListener){
-		visualizerView.addCodeButtonListener(codeButtonListener);
+	public void showVisualizer(){
 		visualizerView.setVisible(true);
 	}
 
