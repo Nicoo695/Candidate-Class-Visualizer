@@ -204,4 +204,27 @@ public class Function implements Comparable<Function> {
     public List<Attribute> getGlobalVariablesUsed() {
         return globalVariablesUsed;
     }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Function function = (Function) o;
+
+		if (arguments != null ? !arguments.equals(function.arguments) : function.arguments != null) return false;
+		if (body != null ? !body.equals(function.body) : function.body != null) return false;
+		if (bodyTokenList != null ? !bodyTokenList.equals(function.bodyTokenList) : function.bodyTokenList != null)
+			return false;
+		if (globalAttributes != null ? !globalAttributes.equals(function.globalAttributes) : function.globalAttributes != null)
+			return false;
+		if (globalVariablesUsed != null ? !globalVariablesUsed.equals(function.globalVariablesUsed) : function.globalVariablesUsed != null)
+			return false;
+		if (name != null ? !name.equals(function.name) : function.name != null) return false;
+		if (returns != null ? !returns.equals(function.returns) : function.returns != null) return false;
+		if (usedFunctions != null ? !usedFunctions.equals(function.usedFunctions) : function.usedFunctions != null)
+			return false;
+
+		return true;
+	}
 }

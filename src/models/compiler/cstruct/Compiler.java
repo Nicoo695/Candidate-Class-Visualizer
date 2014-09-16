@@ -27,6 +27,7 @@ public class Compiler {
     private StringBuilder output;
     private File myFile;
     private Map<String, String> definesProcedency;
+	private final List<Function> processedFunctions;
 
     //private List<Token> tokenList;
 
@@ -41,6 +42,7 @@ public class Compiler {
         definesProcedency = new TreeMap<>();
         alreadyProcessed = new ArrayList<>();
         output = new StringBuilder();
+	    processedFunctions = new ArrayList<>();
     }
 
     public void run() throws IOException, InvalidExpressionException, NoSupportedInstructionException {
@@ -407,16 +409,17 @@ public class Compiler {
                 candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
             }
             for (Function function : functions) {
-                if (function.getReturns().equals(adt.getName())) {
-                    candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
-                } else {
-                    for (Attribute attribute : function.getArguments()) {
-                        if (attribute.getType().equals(adt.getName())) {
-                            candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
-                            break;
-                        }
-                    }
-                }
+		            processedFunctions.add(function);
+		            if (function.getReturns().equals(adt.getName())) {
+		                candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+		            } else {
+		                for (Attribute attribute : function.getArguments()) {
+		                    if (attribute.getType().equals(adt.getName())) {
+		                        candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+		                        break;
+		                    }
+		                }
+		            }
             }
             candidates.put(candidateClass.getName(),candidateClass);
         }
