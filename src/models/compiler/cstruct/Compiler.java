@@ -61,8 +61,8 @@ public class Compiler {
             mainFunction.generateSentenceList(adts, attributes, functions);
         }
         createCandidatesFromModules();
+	    addMethodsBelongingToAdts(); //bloque que agrega a las ccds creadas las funciones que tienen al adt de argumento
         printLists();
-
     }
 
 	public Collection<CandidateClass> getCandidateClasses(){
@@ -76,10 +76,26 @@ public class Compiler {
 	private void createCandidatesFromModules() {
         for (Module module : modules) {
             if (!module.isBasicModule()) {
-                candidates.put(module.getFile().getName(), new CandidateClass(module));
+	            CandidateClass ccd = new CandidateClass(module);
+                candidates.put(module.getFile().getName(), ccd);
             }
         }
     }
+
+	private void addMethodsBelongingToAdts(){
+		for (CandidateClass ccd : candidates.values()) {
+			for (Module module : modules) {
+				for (Function function : module.getFunctions()) {
+					for (Attribute argument : function.getArguments()) {
+						if(argument.getType().equals(ccd.getName())) {
+							ccd.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 
 
     private void subrun(File myFile) throws IOException, InvalidExpressionException, NoSupportedInstructionException {

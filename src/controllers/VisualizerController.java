@@ -33,7 +33,6 @@ public class VisualizerController {
 		//TODO remane, delete, comments, ccd ranking (boton derecho, submenu color ranking y que cambie el color del frame)
 	}
 
-
 	public void runVisualizer(){
 		viewManager.showStartupDialog(e -> browseAndVisualizeLegacyFile());
 	}
@@ -79,6 +78,7 @@ public class VisualizerController {
 
 	public void showFiles(){
 		List<File> files = modelManager.getAssociatedFiles();
+//TODO		String relativePath = files.get(0).getPath();   buscar archivos del mismo nombre en la misma carpeta
 		for (File file : files) {
 			showFile(file);
 		}

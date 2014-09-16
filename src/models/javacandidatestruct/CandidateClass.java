@@ -41,7 +41,7 @@ public class CandidateClass implements Serializable {
             addMethod(new JavaMethod(function.getReturns(), function.getName(),
                     function.getArguments(), function.getBody()));
         }
-        for (Attribute attribute : module.getAtributes()) {
+        for (Attribute attribute : module.getAttributes()) {
             addAttribute(new JavaAttribute(attribute.getType(), attribute.getName(),
                     attribute.isArray(), attribute.getArrayCapax()));
         }

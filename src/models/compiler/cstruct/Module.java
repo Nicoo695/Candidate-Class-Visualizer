@@ -16,14 +16,14 @@ public class Module {
     private File file; // name of the module
     private List<Module> modulesIncluded; //list of includes defined in the header
     private List<Function> functions; //list of functions defined and implemented
-    private List<Attribute> atributes;
+    private List<Attribute> attributes;
     private Map<String, Integer> defines;
 
     public Module(File moduleFile) {
         file = moduleFile;
         functions = new LinkedList<Function>();
         modulesIncluded = new LinkedList<Module>();
-        atributes = new ArrayList<>();
+        attributes = new ArrayList<>();
         defines = new TreeMap<String, Integer>();
     }
 
@@ -50,16 +50,16 @@ public class Module {
                 "windows.h", "conio.h", "fcntl.h", "unistd.h"};
     }
 
-    public List<Attribute> getAtributes() {
-        return atributes;
+    public List<Attribute> getAttributes() {
+        return attributes;
     }
 
-    public void setAtributes(List<Attribute> atributes) {
-        this.atributes = atributes;
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
     }
 
     public void addAttribute(Attribute attribute) {
-        atributes.add(attribute);
+        attributes.add(attribute);
     }
 
     public void addDefine(Map.Entry<String, Integer> entry) {
@@ -136,10 +136,10 @@ public class Module {
                 }
 
             }
-            if (atributes != null) {
-                if (!atributes.isEmpty()) {
+            if (attributes != null) {
+                if (!attributes.isEmpty()) {
                     String intro = "\tThe attributes of this module are: \n";
-                    modulePrint += intro + printList(atributes);
+                    modulePrint += intro + printList(attributes);
                 } else {
                     String intro = "\tThis module has no attributes \n";
                     modulePrint += intro;
