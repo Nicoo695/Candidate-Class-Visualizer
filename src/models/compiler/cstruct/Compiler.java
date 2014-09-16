@@ -438,24 +438,34 @@ public class Compiler {
 
     private void createCandidatesFromFunction() {
         for (Function function : functions) {
-            CandidateClass candidateClass = new CandidateClass(function.getName());
-            candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
-            for (Attribute attribute : function.getArguments()) {
-                candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
-            }
-            for (Attribute attribute : function.getGlobalVariablesUsed()) {
-                candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
-            }
-            candidates.put(candidateClass.getName(),candidateClass);
-            for (Function function1 : function.getUsedFunctions()) {
-                candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function1));
-            }
-            if (!function.getReturns().equals("void")) {
-                candidateClass.addAttribute(new JavaAttribute(function.getReturns(), "return", false, 0));
-            }
+	        if (!hasAdtAsArgument(function)) { //if para checkear que la funcion no tenga argumentos de tipo de algun ADT
+		        CandidateClass candidateClass = new CandidateClass(function.getName());
+		        candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function));
+		        for (Attribute attribute : function.getArguments()) {
+		            candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
+		        }
+		        for (Attribute attribute : function.getGlobalVariablesUsed()) {
+		            candidateClass.addAttribute(JavaAttribute.getJavaAttributeFromCVariable(attribute));
+		        }
+		        candidates.put(candidateClass.getName(),candidateClass);
+		        for (Function function1 : function.getUsedFunctions()) {
+		            candidateClass.addMethod(JavaMethod.getJavaMethodFromCFunction(function1));
+		        }
+		        if (!function.getReturns().equals("void")) {
+		            candidateClass.addAttribute(new JavaAttribute(function.getReturns(), "return", false, 0));
+		        }
+	        }
         }
     }
 
+	private boolean hasAdtAsArgument(Function function){
+		for (Attribute argument : function.getArguments()) {
+			for (Adt adt : adts) {
+				if(adt.getName().equals(argument.getType())) return true;
+			}
+		}
+		return false;
+	}
 
     // this method read each name of modules (stored in listD modules) and adds all the information implemented inside
     // each file to each object of the list.
